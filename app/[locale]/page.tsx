@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { sanityFetch } from "@/sanity/lib/client";
 import { PROJECTS_QUERY, CATEGORIES_QUERY } from "@/sanity/lib/queries";
@@ -21,6 +21,7 @@ export async function generateMetadata({
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const [projects, categories] = await Promise.all([
     sanityFetch<PROJECTS_QUERY_RESULT>(PROJECTS_QUERY),

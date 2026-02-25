@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { sanityFetch } from "@/sanity/lib/client";
 import { PROJECT_BY_SLUG_QUERY, PROJECTS_QUERY } from "@/sanity/lib/queries";
@@ -58,6 +58,7 @@ export async function generateStaticParams() {
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "common" });
   const project = await sanityFetch<PROJECT_BY_SLUG_QUERY_RESULT>(PROJECT_BY_SLUG_QUERY, { slug });
 
