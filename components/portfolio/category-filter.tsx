@@ -2,13 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import type { CATEGORIES_QUERY_RESULT } from "@/sanity.types";
 
 interface CategoryFilterProps {
-  categories: Array<{
-    _id: string;
-    title: { en: string; ro: string };
-    slug: { current: string };
-  }>;
+  categories: CATEGORIES_QUERY_RESULT;
   activeCategory: string | null;
   onCategoryChange: (slug: string | null) => void;
   locale: string;
@@ -27,25 +24,25 @@ export function CategoryFilter({
       <button
         onClick={() => onCategoryChange(null)}
         className={cn(
-          "px-4 py-2 text-xs font-bold uppercase tracking-widest border-2 transition-all",
+          "border-2 px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all",
           activeCategory === null
             ? "border-foreground bg-foreground text-background"
-            : "border-foreground/20 hover:border-foreground/40"
+            : "border-foreground/20 hover:border-foreground/40",
         )}
       >
         {t("allCategories")}
       </button>
       {categories.map((cat) => {
-        const title = locale === "ro" ? (cat.title.ro || cat.title.en) : cat.title.en;
+        const title = locale === "ro" ? cat.title?.ro || cat.title?.en : cat.title?.en;
         return (
           <button
             key={cat._id}
-            onClick={() => onCategoryChange(cat.slug.current)}
+            onClick={() => onCategoryChange(cat.slug?.current ?? null)}
             className={cn(
-              "px-4 py-2 text-xs font-bold uppercase tracking-widest border-2 transition-all",
-              activeCategory === cat.slug.current
+              "border-2 px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all",
+              activeCategory === cat.slug?.current
                 ? "border-foreground bg-foreground text-background"
-                : "border-foreground/20 hover:border-foreground/40"
+                : "border-foreground/20 hover:border-foreground/40",
             )}
           >
             {title}

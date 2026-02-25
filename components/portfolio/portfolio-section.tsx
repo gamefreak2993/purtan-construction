@@ -4,30 +4,15 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { CategoryFilter } from "./category-filter";
 import { ProjectGrid } from "./project-grid";
+import type { PROJECTS_QUERY_RESULT, CATEGORIES_QUERY_RESULT } from "@/sanity.types";
 
 interface PortfolioSectionProps {
-  projects: Array<{
-    _id: string;
-    slug: { current: string };
-    title: { en: string; ro: string };
-    coverImage: any;
-    category?: { title: { en: string; ro: string }; slug: { current: string } };
-    location?: string;
-    featured?: boolean;
-  }>;
-  categories: Array<{
-    _id: string;
-    title: { en: string; ro: string };
-    slug: { current: string };
-  }>;
+  projects: PROJECTS_QUERY_RESULT;
+  categories: CATEGORIES_QUERY_RESULT;
   locale: string;
 }
 
-export function PortfolioSection({
-  projects,
-  categories,
-  locale,
-}: PortfolioSectionProps) {
+export function PortfolioSection({ projects, categories, locale }: PortfolioSectionProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const t = useTranslations("common");
 
@@ -37,10 +22,8 @@ export function PortfolioSection({
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
-        <h2 className="text-3xl font-black uppercase tracking-wide">
-          {t("projects")}
-        </h2>
+      <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <h2 className="text-3xl font-black tracking-wide uppercase">{t("projects")}</h2>
         {categories.length > 0 && (
           <CategoryFilter
             categories={categories}

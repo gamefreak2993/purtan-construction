@@ -20,7 +20,7 @@ export type ContactFormState = {
 
 export async function sendContactEmail(
   _prevState: ContactFormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<ContactFormState> {
   const raw = {
     name: formData.get("name") as string,

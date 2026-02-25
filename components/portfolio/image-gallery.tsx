@@ -4,9 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import type { SanityImageSource } from "@sanity/image-url";
 
 interface ImageGalleryProps {
-  images: any[];
+  images: SanityImageSource[];
 }
 
 export function ImageGallery({ images }: ImageGalleryProps) {
@@ -18,17 +19,16 @@ export function ImageGallery({ images }: ImageGalleryProps) {
   const closeLightbox = () => setLightboxIndex(null);
   const prev = () =>
     setLightboxIndex((i) => (i !== null ? (i - 1 + images.length) % images.length : null));
-  const next = () =>
-    setLightboxIndex((i) => (i !== null ? (i + 1) % images.length : null));
+  const next = () => setLightboxIndex((i) => (i !== null ? (i + 1) % images.length : null));
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
         {images.map((image, index) => (
           <button
             key={index}
             onClick={() => openLightbox(index)}
-            className="relative aspect-square overflow-hidden border-2 border-foreground/10 hover:border-amber-500 transition-colors cursor-pointer"
+            className="border-foreground/10 relative aspect-square cursor-pointer overflow-hidden border-2 transition-colors hover:border-amber-500"
           >
             <Image
               src={urlFor(image).width(600).height(600).url()}
@@ -49,21 +49,27 @@ export function ImageGallery({ images }: ImageGalleryProps) {
         >
           <button
             onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white/80 hover:text-white z-10"
+            className="absolute top-6 right-6 z-10 text-white/80 hover:text-white"
             aria-label="Close"
           >
             <X className="h-8 w-8" />
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-4 text-white/80 hover:text-white z-10"
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            className="absolute left-4 z-10 text-white/80 hover:text-white"
             aria-label="Previous"
           >
             <ChevronLeft className="h-10 w-10" />
           </button>
           <button
-            onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-4 text-white/80 hover:text-white z-10"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            className="absolute right-4 z-10 text-white/80 hover:text-white"
             aria-label="Next"
           >
             <ChevronRight className="h-10 w-10" />
@@ -77,7 +83,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
               className="max-h-[85vh] w-auto object-contain"
             />
           </div>
-          <div className="absolute bottom-6 text-white/60 text-sm font-bold tracking-widest">
+          <div className="absolute bottom-6 text-sm font-bold tracking-widest text-white/60">
             {lightboxIndex + 1} / {images.length}
           </div>
         </div>

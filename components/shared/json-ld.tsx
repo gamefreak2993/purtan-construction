@@ -14,8 +14,7 @@ export function LocalBusinessJsonLd({ settings }: JsonLdProps) {
     "@type": "GeneralContractor",
     name: settings?.siteTitle?.en || "Purtan Construction",
     description:
-      settings?.description?.en ||
-      "Professional construction services by Daniel Ovidiu Purtan",
+      settings?.description?.en || "Professional construction services by Daniel Ovidiu Purtan",
     ...(settings?.phone && { telephone: settings.phone }),
     ...(settings?.email && { email: settings.email }),
     ...(settings?.address?.en && {

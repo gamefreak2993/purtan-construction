@@ -1,14 +1,8 @@
 import { ProjectCard } from "./project-card";
+import type { PROJECTS_QUERY_RESULT } from "@/sanity.types";
 
 interface ProjectGridProps {
-  projects: Array<{
-    _id: string;
-    slug: { current: string };
-    title: { en: string; ro: string };
-    coverImage: any;
-    category?: { title: { en: string; ro: string } };
-    location?: string;
-  }>;
+  projects: PROJECTS_QUERY_RESULT;
   locale: string;
 }
 
@@ -16,7 +10,7 @@ export function ProjectGrid({ projects, locale }: ProjectGridProps) {
   if (projects.length === 0) {
     return (
       <div className="py-24 text-center">
-        <p className="text-lg text-muted-foreground">No projects yet.</p>
+        <p className="text-muted-foreground text-lg">No projects yet.</p>
       </div>
     );
   }

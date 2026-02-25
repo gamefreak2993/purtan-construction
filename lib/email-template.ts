@@ -39,12 +39,16 @@ export function buildContactEmailHtml({ name, email, phone, message }: ContactEm
             <div class="label">Email</div>
             <div class="value"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></div>
           </div>
-          ${phone ? `
+          ${
+            phone
+              ? `
           <div class="field">
             <div class="label">Phone</div>
             <div class="value"><a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a></div>
           </div>
-          ` : ""}
+          `
+              : ""
+          }
           <div class="field">
             <div class="label">Message</div>
             <div class="message-box value">${escapeHtml(message)}</div>

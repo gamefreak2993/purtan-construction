@@ -10,7 +10,6 @@ const initialState: ContactFormState = { success: false };
 
 export function ContactForm() {
   const t = useTranslations("contact.form");
-  const tv = useTranslations("contact.validation");
   const [state, formAction, isPending] = useActionState(sendContactEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -38,7 +37,10 @@ export function ContactForm() {
 
       <form ref={formRef} action={formAction} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+          <label
+            htmlFor="name"
+            className="text-muted-foreground mb-2 block text-xs font-bold tracking-widest uppercase"
+          >
             {t("name")} *
           </label>
           <input
@@ -47,16 +49,19 @@ export function ContactForm() {
             name="name"
             required
             className={cn(
-              "w-full border-2 border-foreground/20 bg-transparent px-4 py-3 text-sm transition-colors",
+              "border-foreground/20 w-full border-2 bg-transparent px-4 py-3 text-sm transition-colors",
               "focus:border-amber-500 focus:outline-none",
-              "placeholder:text-muted-foreground/50"
+              "placeholder:text-muted-foreground/50",
             )}
             placeholder={t("name")}
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+          <label
+            htmlFor="email"
+            className="text-muted-foreground mb-2 block text-xs font-bold tracking-widest uppercase"
+          >
             {t("email")} *
           </label>
           <input
@@ -65,16 +70,19 @@ export function ContactForm() {
             name="email"
             required
             className={cn(
-              "w-full border-2 border-foreground/20 bg-transparent px-4 py-3 text-sm transition-colors",
+              "border-foreground/20 w-full border-2 bg-transparent px-4 py-3 text-sm transition-colors",
               "focus:border-amber-500 focus:outline-none",
-              "placeholder:text-muted-foreground/50"
+              "placeholder:text-muted-foreground/50",
             )}
             placeholder={t("email")}
           />
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+          <label
+            htmlFor="phone"
+            className="text-muted-foreground mb-2 block text-xs font-bold tracking-widest uppercase"
+          >
             {t("phone")}
           </label>
           <input
@@ -82,16 +90,19 @@ export function ContactForm() {
             id="phone"
             name="phone"
             className={cn(
-              "w-full border-2 border-foreground/20 bg-transparent px-4 py-3 text-sm transition-colors",
+              "border-foreground/20 w-full border-2 bg-transparent px-4 py-3 text-sm transition-colors",
               "focus:border-amber-500 focus:outline-none",
-              "placeholder:text-muted-foreground/50"
+              "placeholder:text-muted-foreground/50",
             )}
             placeholder={t("phone")}
           />
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
+          <label
+            htmlFor="message"
+            className="text-muted-foreground mb-2 block text-xs font-bold tracking-widest uppercase"
+          >
             {t("message")} *
           </label>
           <textarea
@@ -100,9 +111,9 @@ export function ContactForm() {
             required
             rows={5}
             className={cn(
-              "w-full border-2 border-foreground/20 bg-transparent px-4 py-3 text-sm transition-colors resize-vertical",
+              "border-foreground/20 resize-vertical w-full border-2 bg-transparent px-4 py-3 text-sm transition-colors",
               "focus:border-amber-500 focus:outline-none",
-              "placeholder:text-muted-foreground/50"
+              "placeholder:text-muted-foreground/50",
             )}
             placeholder={t("message")}
           />
@@ -112,8 +123,8 @@ export function ContactForm() {
           type="submit"
           disabled={isPending}
           className={cn(
-            "inline-flex items-center gap-2 bg-amber-500 px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition-all",
-            "hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            "inline-flex items-center gap-2 bg-amber-500 px-8 py-3.5 text-sm font-bold tracking-widest text-white uppercase transition-all",
+            "hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-50",
           )}
         >
           <Send className="h-4 w-4" />

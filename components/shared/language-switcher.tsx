@@ -14,14 +14,12 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center border-2 border-foreground/20 text-sm font-bold">
+    <div className="border-foreground/20 flex items-center border-2 text-sm font-bold">
       <button
         onClick={() => switchLocale("en")}
         className={cn(
-          "px-3 py-1.5 uppercase tracking-wider transition-colors",
-          locale === "en"
-            ? "bg-foreground text-background"
-            : "hover:bg-foreground/10"
+          "px-3 py-1.5 tracking-wider uppercase transition-colors",
+          locale === "en" ? "bg-foreground text-background" : "hover:bg-foreground/10",
         )}
       >
         EN
@@ -29,10 +27,8 @@ export function LanguageSwitcher() {
       <button
         onClick={() => switchLocale("ro")}
         className={cn(
-          "px-3 py-1.5 uppercase tracking-wider transition-colors",
-          locale === "ro"
-            ? "bg-foreground text-background"
-            : "hover:bg-foreground/10"
+          "px-3 py-1.5 tracking-wider uppercase transition-colors",
+          locale === "ro" ? "bg-foreground text-background" : "hover:bg-foreground/10",
         )}
       >
         RO

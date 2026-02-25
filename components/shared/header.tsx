@@ -18,28 +18,26 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b-4 border-foreground bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="border-foreground bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50 border-b-4 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center bg-amber-500 text-white font-black text-lg">
+          <div className="flex h-10 w-10 items-center justify-center bg-amber-500 text-lg font-black text-white">
             P
           </div>
-          <span className="text-xl font-black uppercase tracking-wider hidden sm:block">
+          <span className="hidden text-xl font-black tracking-wider uppercase sm:block">
             Purtan
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-bold uppercase tracking-widest transition-colors hover:text-amber-600",
-                pathname === link.href
-                  ? "text-amber-600"
-                  : "text-muted-foreground"
+                "text-sm font-bold tracking-widest uppercase transition-colors hover:text-amber-600",
+                pathname === link.href ? "text-amber-600" : "text-muted-foreground",
               )}
             >
               {link.label}
@@ -50,7 +48,7 @@ export function Header() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-2"
+          className="p-2 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -60,17 +58,15 @@ export function Header() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="md:hidden border-t-2 border-foreground/10 bg-background px-6 py-4 flex flex-col gap-4">
+        <nav className="border-foreground/10 bg-background flex flex-col gap-4 border-t-2 px-6 py-4 md:hidden">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "text-sm font-bold uppercase tracking-widest py-2",
-                pathname === link.href
-                  ? "text-amber-600"
-                  : "text-muted-foreground"
+                "py-2 text-sm font-bold tracking-widest uppercase",
+                pathname === link.href ? "text-amber-600" : "text-muted-foreground",
               )}
             >
               {link.label}
