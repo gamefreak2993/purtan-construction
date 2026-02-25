@@ -11,7 +11,7 @@ export function PortableText({ value }: PortableTextProps) {
   if (!value) return null;
 
   return (
-    <div className="prose prose-lg prose-headings:font-black prose-headings:uppercase prose-headings:tracking-wide prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline prose-strong:font-black max-w-none">
+    <div className="prose prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:font-bold max-w-none">
       <BasePortableText value={value} />
     </div>
   );

@@ -23,7 +23,7 @@ export function PortfolioSection({ projects, categories, locale }: PortfolioSect
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
       <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <h2 className="text-3xl font-black tracking-wide uppercase">{t("projects")}</h2>
+        <h2 className="text-3xl font-bold tracking-tight">{t("projects")}</h2>
         {categories.length > 0 && (
           <CategoryFilter
             categories={categories}
