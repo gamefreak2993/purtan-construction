@@ -10,7 +10,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typegen": "cd sanity && sanity schema extract --path ../schema.json && cd .. && sanity typegen generate",
-    "deploy": "vercel --prod --yes --force --build-env NEXT_PUBLIC_SANITY_PROJECT_ID=oa7kx2fr --build-env NEXT_PUBLIC_SANITY_DATASET=production"
+    "deploy": "vercel --prod --yes"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.2",
