@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import type { SanityImageSource } from "@sanity/image-url";
@@ -14,18 +14,7 @@ interface BeforeAfterSliderProps {
 
 export function BeforeAfterSlider({ before, after, caption }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(50);
-  const [containerWidth, setContainerWidth] = useState<number | string>("100%");
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new ResizeObserver((entries) => {
-      setContainerWidth(entries[0].contentRect.width);
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const handleMove = (clientX: number) => {
     if (!containerRef.current) return;
@@ -60,13 +49,12 @@ export function BeforeAfterSlider({ before, after, caption }: BeforeAfterSliderP
         <Image src={afterUrl} alt="After" fill className="object-cover" />
 
         {/* Before (clipped) */}
-        <div className="absolute inset-0 overflow-hidden" style={{ width: `${position}%` }}>
+        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
           <Image
             src={beforeUrl}
             alt="Before"
             fill
             className="object-cover"
-            style={{ maxWidth: "none", width: containerWidth }}
           />
         </div>
 
