@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { urlFor } from "@/sanity/lib/image";
 import type { PROJECTS_QUERY_RESULT } from "@/sanity.types";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface ProjectCardProps {
   project: PROJECTS_QUERY_RESULT[number];
@@ -21,32 +23,31 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
     : null;
 
   return (
-    <Link
-      href={`/projects/${project.slug?.current}`}
-      className="group border-foreground/10 bg-card block border-2 transition-all hover:border-amber-500 hover:shadow-[8px_8px_0_0_rgba(245,158,11,0.15)]"
-    >
-      <div className="bg-muted relative aspect-[4/3] overflow-hidden">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt={title || "Project"}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        )}
-      </div>
-      <div className="p-5">
-        {categoryTitle && (
-          <span className="text-xs font-bold tracking-widest text-amber-600 uppercase">
-            {categoryTitle}
-          </span>
-        )}
-        <h3 className="mt-1 text-lg leading-tight font-black tracking-wide uppercase">{title}</h3>
-        {project.location && (
-          <p className="text-muted-foreground mt-1 text-sm">{project.location}</p>
-        )}
-      </div>
+    <Link href={`/projects/${project.slug?.current}`} className="group block">
+      <Card className="overflow-hidden transition-shadow hover:shadow-lg">
+        <div className="bg-muted relative aspect-[4/3] overflow-hidden">
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt={title || "Project"}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
+        </div>
+        <CardContent>
+          {categoryTitle && (
+            <Badge variant="secondary" className="mb-2">
+              {categoryTitle}
+            </Badge>
+          )}
+          <h3 className="text-lg font-semibold leading-tight">{title}</h3>
+          {project.location && (
+            <p className="text-muted-foreground mt-1 text-sm">{project.location}</p>
+          )}
+        </CardContent>
+      </Card>
     </Link>
   );
 }

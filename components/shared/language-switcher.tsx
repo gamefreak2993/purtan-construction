@@ -2,37 +2,32 @@
 
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { cn } from "@/lib/utils";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
 
-  const switchLocale = (newLocale: "en" | "ro") => {
-    router.replace(pathname, { locale: newLocale });
+  const switchLocale = (value: string) => {
+    if (value) {
+      router.replace(pathname, { locale: value as "en" | "ro" });
+    }
   };
 
   return (
-    <div className="border-foreground/20 flex items-center border-2 text-sm font-bold">
-      <button
-        onClick={() => switchLocale("en")}
-        className={cn(
-          "px-3 py-1.5 tracking-wider uppercase transition-colors",
-          locale === "en" ? "bg-foreground text-background" : "hover:bg-foreground/10",
-        )}
-      >
+    <ToggleGroup
+      type="single"
+      value={locale}
+      onValueChange={switchLocale}
+      size="sm"
+    >
+      <ToggleGroupItem value="en" aria-label="English">
         EN
-      </button>
-      <button
-        onClick={() => switchLocale("ro")}
-        className={cn(
-          "px-3 py-1.5 tracking-wider uppercase transition-colors",
-          locale === "ro" ? "bg-foreground text-background" : "hover:bg-foreground/10",
-        )}
-      >
+      </ToggleGroupItem>
+      <ToggleGroupItem value="ro" aria-label="Romanian">
         RO
-      </button>
-    </div>
+      </ToggleGroupItem>
+    </ToggleGroup>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import type { SanityImageSource } from "@sanity/image-url";
+import { Badge } from "@/components/ui/badge";
 
 interface BeforeAfterSliderProps {
   before: SanityImageSource;
@@ -49,7 +50,7 @@ export function BeforeAfterSlider({ before, after, caption }: BeforeAfterSliderP
     <div className="space-y-2">
       <div
         ref={containerRef}
-        className="border-foreground/10 relative aspect-[3/2] cursor-col-resize overflow-hidden border-2 select-none"
+        className="relative aspect-[3/2] cursor-col-resize overflow-hidden rounded-md border select-none"
         onMouseMove={handleMouseMove}
         onMouseDown={(e) => handleMove(e.clientX)}
         onTouchMove={handleTouchMove}
@@ -71,21 +72,21 @@ export function BeforeAfterSlider({ before, after, caption }: BeforeAfterSliderP
 
         {/* Divider */}
         <div
-          className="absolute top-0 bottom-0 z-10 w-1 -translate-x-1/2 bg-amber-500"
+          className="bg-primary absolute top-0 bottom-0 z-10 w-0.5 -translate-x-1/2"
           style={{ left: `${position}%` }}
         >
-          <div className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-amber-500 text-white shadow-lg">
+          <div className="bg-primary text-primary-foreground absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-lg">
             <ChevronLeftRight className="h-5 w-5" />
           </div>
         </div>
 
         {/* Labels */}
-        <div className="absolute top-3 left-3 z-10 bg-black/70 px-2 py-1 text-xs font-bold tracking-widest text-white uppercase">
+        <Badge className="absolute top-3 left-3 z-10" variant="secondary">
           Before
-        </div>
-        <div className="absolute top-3 right-3 z-10 bg-black/70 px-2 py-1 text-xs font-bold tracking-widest text-white uppercase">
+        </Badge>
+        <Badge className="absolute top-3 right-3 z-10" variant="secondary">
           After
-        </div>
+        </Badge>
       </div>
       {caption && <p className="text-muted-foreground text-sm">{caption}</p>}
     </div>
