@@ -1,3 +1,5 @@
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+
 interface VideoEmbedProps {
   url: string;
 }
@@ -21,14 +23,16 @@ export function VideoEmbed({ url }: VideoEmbedProps) {
   if (!embedUrl) return null;
 
   return (
-    <div className="border-foreground/10 relative aspect-video overflow-hidden border-2">
-      <iframe
-        src={embedUrl}
-        className="absolute inset-0 h-full w-full"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        title="Project video"
-      />
+    <div className="overflow-hidden rounded-md border">
+      <AspectRatio ratio={16 / 9}>
+        <iframe
+          src={embedUrl}
+          className="h-full w-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="Project video"
+        />
+      </AspectRatio>
     </div>
   );
 }
