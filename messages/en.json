@@ -1,0 +1,48 @@
+{
+  "common": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact",
+    "allCategories": "All",
+    "viewProject": "View Project",
+    "backToProjects": "Back to Projects",
+    "language": "Language",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "followUs": "Follow Us"
+  },
+  "hero": {
+    "title": "Quality Construction, Lasting Results",
+    "subtitle": "Professional construction services with attention to detail and craftsmanship",
+    "cta": "View Our Work"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a project in mind? We'd love to hear from you.",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Your Phone (optional)",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! We'll get back to you soon.",
+      "error": "Something went wrong. Please try again."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "messageRequired": "Message is required"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtBy": "Daniel Ovidiu Purtan — General Contractor"
+  },
+  "metadata": {
+    "title": "Purtan Construction — Quality Building Services",
+    "description": "Professional construction services by Daniel Ovidiu Purtan. Renovations, new builds, and remodeling with quality craftsmanship."
+  }
+}

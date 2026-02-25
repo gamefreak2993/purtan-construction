@@ -1,0 +1,48 @@
+{
+  "common": {
+    "home": "Acasă",
+    "projects": "Proiecte",
+    "contact": "Contact",
+    "allCategories": "Toate",
+    "viewProject": "Vezi Proiectul",
+    "backToProjects": "Înapoi la Proiecte",
+    "language": "Limbă",
+    "phone": "Telefon",
+    "email": "Email",
+    "address": "Adresă",
+    "followUs": "Urmărește-ne"
+  },
+  "hero": {
+    "title": "Construcții de Calitate, Rezultate Durabile",
+    "subtitle": "Servicii profesionale de construcții cu atenție la detalii și măiestrie",
+    "cta": "Vezi Lucrările Noastre"
+  },
+  "contact": {
+    "title": "Contactează-ne",
+    "subtitle": "Ai un proiect în minte? Ne-ar plăcea să auzim de la tine.",
+    "form": {
+      "name": "Numele Tău",
+      "email": "Emailul Tău",
+      "phone": "Telefonul Tău (opțional)",
+      "message": "Mesajul Tău",
+      "submit": "Trimite Mesajul",
+      "sending": "Se trimite...",
+      "success": "Mesaj trimis cu succes! Te vom contacta în curând.",
+      "error": "Ceva nu a funcționat. Te rugăm să încerci din nou."
+    },
+    "validation": {
+      "nameRequired": "Numele este obligatoriu",
+      "emailRequired": "Emailul este obligatoriu",
+      "emailInvalid": "Te rugăm să introduci un email valid",
+      "messageRequired": "Mesajul este obligatoriu"
+    }
+  },
+  "footer": {
+    "rights": "Toate drepturile rezervate.",
+    "builtBy": "Daniel Ovidiu Purtan — Antreprenor General"
+  },
+  "metadata": {
+    "title": "Purtan Construcții — Servicii de Construcții de Calitate",
+    "description": "Servicii profesionale de construcții de la Daniel Ovidiu Purtan. Renovări, construcții noi și remodelări cu măiestrie de calitate."
+  }
+}
