@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { cn } from "@/lib/utils";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import type { CATEGORIES_QUERY_RESULT } from "@/sanity.types";
 
 interface CategoryFilterProps {
@@ -19,36 +19,29 @@ export function CategoryFilter({
 }: CategoryFilterProps) {
   const t = useTranslations("common");
 
+  const handleValueChange = (value: string) => {
+    onCategoryChange(value === "all" || value === "" ? null : value);
+  };
+
   return (
-    <div className="flex flex-wrap gap-2">
-      <button
-        onClick={() => onCategoryChange(null)}
-        className={cn(
-          "border-2 px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all",
-          activeCategory === null
-            ? "border-foreground bg-foreground text-background"
-            : "border-foreground/20 hover:border-foreground/40",
-        )}
-      >
+    <ToggleGroup
+      type="single"
+      value={activeCategory ?? "all"}
+      onValueChange={handleValueChange}
+      variant="outline"
+      className="flex-wrap"
+    >
+      <ToggleGroupItem value="all">
         {t("allCategories")}
-      </button>
+      </ToggleGroupItem>
       {categories.map((cat) => {
         const title = locale === "ro" ? cat.title?.ro || cat.title?.en : cat.title?.en;
         return (
-          <button
-            key={cat._id}
-            onClick={() => onCategoryChange(cat.slug?.current ?? null)}
-            className={cn(
-              "border-2 px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all",
-              activeCategory === cat.slug?.current
-                ? "border-foreground bg-foreground text-background"
-                : "border-foreground/20 hover:border-foreground/40",
-            )}
-          >
+          <ToggleGroupItem key={cat._id} value={cat.slug?.current ?? ""}>
             {title}
-          </button>
+          </ToggleGroupItem>
         );
       })}
-    </div>
+    </ToggleGroup>
   );
 }
