@@ -11,6 +11,9 @@ import { VideoEmbed } from "@/components/portfolio/video-embed";
 import { PortableText } from "@/components/portfolio/portable-text";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, MapPin, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -74,23 +77,22 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <article>
       {/* Header with back link */}
       <div className="mx-auto max-w-7xl px-6 pt-8">
-        <Link
-          href="/"
-          className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t("backToProjects")}
-        </Link>
+        <Button variant="ghost" size="sm" asChild>
+          <Link href="/">
+            <ArrowLeft className="h-4 w-4" />
+            {t("backToProjects")}
+          </Link>
+        </Button>
       </div>
 
       {/* Project header */}
       <header className="mx-auto max-w-7xl px-6 py-10">
         {categoryTitle && (
-          <span className="text-sm font-bold tracking-widest text-amber-600 uppercase">
+          <Badge variant="secondary" className="mb-3">
             {categoryTitle}
-          </span>
+          </Badge>
         )}
-        <h1 className="mt-2 text-4xl leading-[0.95] font-black tracking-tight uppercase sm:text-5xl lg:text-6xl">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           {title}
         </h1>
         <div className="text-muted-foreground mt-4 flex flex-wrap gap-6 text-sm">
@@ -110,7 +112,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </span>
           )}
         </div>
-        <div className="mt-6 h-1 w-16 bg-amber-500" />
+        <Separator className="mt-6 w-16" />
       </header>
 
       {/* Content sections */}
@@ -132,7 +134,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         {/* Before/After pairs */}
         {project.beforeAfterPairs && project.beforeAfterPairs.length > 0 && (
           <section className="space-y-8">
-            <h2 className="text-2xl font-black tracking-wide uppercase">Before &amp; After</h2>
+            <h2 className="text-2xl font-bold">Before &amp; After</h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {project.beforeAfterPairs
                 .filter((pair) => pair.before && pair.after)
